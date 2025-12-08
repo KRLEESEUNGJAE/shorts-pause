@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" rx="6" fill="#FF0000"/>
+          <rect x="7" y="6" width="3" height="12" rx="1" fill="white"/>
+          <rect x="14" y="6" width="3" height="12" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="title">
+        <h1>Shorts Pause</h1>
+        <p class="subtitle">Stop Auto-Loop</p>
+      </div>
+    </div>
+
+    <div class="toggle-section">
+      <label class="toggle">
+        <input type="checkbox" id="pauseToggle">
+        <span class="slider">
+          <span class="slider-icon"></span>
+        </span>
+      </label>
+      <span id="statusText" class="status">OFF</span>
+    </div>
+
+    <p class="hint">Pauses video when it ends</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
