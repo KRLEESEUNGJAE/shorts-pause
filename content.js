@@ -12,12 +12,28 @@
   let isEnabled = false;
   let observer = null;
   let intervalId = null;
+  let lastUrl = location.href;
 
   // Initialize from storage
   chrome.storage.sync.get([STORAGE_KEY], (result) => {
     isEnabled = result[STORAGE_KEY] === true;
-    if (isEnabled) startWatching();
+    if (isEnabled && isOnShorts()) startWatching();
   });
+
+  // Handle YouTube SPA navigation
+  setInterval(() => {
+    if (location.href !== lastUrl) {
+      lastUrl = location.href;
+      if (isEnabled) {
+        stopWatching();
+        if (isOnShorts()) startWatching();
+      }
+    }
+  }, 500);
+
+  function isOnShorts() {
+    return location.pathname.startsWith('/shorts');
+  }
 
   // Listen for toggle messages from popup
   chrome.runtime.onMessage.addListener(({ type, enabled }) => {
